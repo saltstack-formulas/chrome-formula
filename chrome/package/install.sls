@@ -12,6 +12,7 @@ chrome-package-install-cmd-run-cask:
     - name: brew cask install {{ chrome.pkg.name }}
     - runas: {{ chrome.rootuser }}
     - onlyif: test -x /usr/local/bin/brew
+    - unless: test -d '/Applications/Google Chrome.app'
 
     {%- elif grains.os_family in ('RedHat', 'Debian', 'Suse') and chrome.pkg.use_upstream_package_directurl %}
 
@@ -31,6 +32,6 @@ chrome-package-install-pkg-installed-name-linux:
     - name: snap install {{ chrome.pkg.name }}
     - onlyif: test -x /usr/bin/snap || test -x /usr/local/bin/snap
     - onfail:
-       - pkg: chrome-package-install-pkg-installed
+       - pkg: chrome-package-install-pkg-installed-name-linux
 
     {%- endif %}

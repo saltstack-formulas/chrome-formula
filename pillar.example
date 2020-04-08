@@ -16,6 +16,6 @@ chrome:
       source_hash: 6f9fbeb790a3cc63540ea0470f49d1d8d86c3913e0500d008bc5dec74d8034d5
     directurl:
       # debian
-      #source: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      # source: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       # redhat/suse
       source: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm

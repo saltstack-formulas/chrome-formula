@@ -3,7 +3,7 @@
 control 'chrome package' do
   title 'should be installed'
 
-package_name =
+  package_name =
     case platform[:family]
     when 'suse'
       'google-chrome-stable'
@@ -13,8 +13,8 @@ package_name =
       'google-chrome-stable'
     when 'linux'
       'chrome'
-      end
     end
+  end
 
   describe package(package_name) do
     it { should be_installed }

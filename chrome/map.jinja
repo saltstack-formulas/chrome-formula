@@ -17,7 +17,7 @@
 %}
 {%- set chrome = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
 
-{%- if charles.pkg.use_upstream_macapp %}
-       {%- set url = charles.pkg.macapp.uri %}
-       {%- do charles.pkg.archive.update({ 'name': '/Applications', 'source': url }) %}
+{%- if chrome.pkg.use_upstream_macapp %}
+       {%- set url = chrome.pkg.macapp.uri %}
+       {%- do chrome.pkg.archive.update({ 'name': '/Applications', 'source': url }) %}
 {%- endif %}
