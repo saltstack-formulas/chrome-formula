@@ -1,0 +1,51 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['os_family'] based logic.
+# You just need to add the key:values for an `os_family` that differ
+# from `defaults.yaml`.
+# Only add an `os_family` which is/will be supported by the formula
+#
+# If you do not need to provide defaults via the `os_family` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osfamilymap: {}
+---
+{%- if grains.os == 'MacOS' %}
+    {%- set macos_rootuser = salt['cmd.run']("stat -f '%Su' /dev/console") %}
+    {%- set macos_rootgroup = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
+{%- endif %}
+
+Debian:
+  pkg:
+    name: google-chrome-stable
+    use_upstream_package_directurl: true
+    directurl:
+      source: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      source_hash: e2b8dcb8aa9249b00c5f2cef5e755152a249b891bd38d7a0eb814375594ae8c5
+
+RedHat:
+  pkg:
+    name: google-chrome-stable
+    use_upstream_package_directurl: true
+    directurl:
+      source: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+      source_hash: 23243892da1a6129f84faeb3f5daafae4d73fbbf3f50804c4e8eae9b41ce5eb2
+
+Suse:
+  pkg:
+    name: google-chrome-stable
+    use_upstream_package_directurl: true
+    directurl:
+      source: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+      source_hash: 23243892da1a6129f84faeb3f5daafae4d73fbbf3f50804c4e8eae9b41ce5eb2
+
+MacOS:
+  rootuser: {{ macos_rootuser | d('') }}
+  rootgroup: {{ macos_rootgroup | d('') }}
+  environ_file: /etc/defaults/chrome.sh
+  pkg:
+    name: google-chrome # brew
+    macapp:
+      uri: https://dl.google.com/chrome/mac/stable/googlechrome.dmg
+      source_hash: 6f9fbeb790a3cc63540ea0470f49d1d8d86c3913e0500d008bc5dec74d8034d5
+      skip_verify: false

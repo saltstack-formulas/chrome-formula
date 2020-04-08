@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+chrome:
+  version: stable
+  rootuser: root
+  rootgroup: root
+  dir:
+    tmp: /tmp/chrome
+  config: {}
+  environ:
+    - dummy=dummy
+  environ_file: /etc/default/chrome.sh
+  pkg:
+    name: chrome
+    use_upstream_package: true
+    use_upstream_package_directurl: false
+    use_upstream_macapp: false
+    directurl: {}
+    macapp: {}
+  retry_option:
+    # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
+    attempts: 3
+    until: true
+    interval: 10
+    splay: 10

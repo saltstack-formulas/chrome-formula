@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+chrome:
+  version: stable
+  environ:
+    - dummy=dummy
+  environ_file: /etc/default/chrome.sh
+  pkg:
+    name: chrome                 # or google-chrome-stable
+    use_upstream_macapp: true    # dmg
+    use_upstream_package: true   # snap
+    use_upstream_package_directurl: false  # redhat, debian, suse families
+    macapp:
+      uri: https://dl.google.com/chrome/mac/stable/googlechrome.dmg
+      source_hash: 6f9fbeb790a3cc63540ea0470f49d1d8d86c3913e0500d008bc5dec74d8034d5
+    directurl:
+      # debian
+      #source: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      # redhat/suse
+      source: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
