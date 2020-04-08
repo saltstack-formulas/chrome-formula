@@ -13,6 +13,7 @@ ignore: |
   test/**/states/**/*.sls
   .kitchen/
   chrome/osfamilymap.yaml
+  pillar.example
 
 yaml-files:
   # Default settings

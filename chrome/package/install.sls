@@ -14,13 +14,15 @@ chrome-package-install-cmd-run-cask:
     - onlyif: test -x /usr/local/bin/brew
     - unless: test -d '/Applications/Google Chrome.app'
 
-    {%- elif grains.os_family in ('RedHat', 'Debian', 'Suse') and chrome.pkg.use_upstream_package_directurl %}
+    {%- elif grains.os_family in ('RedHat', 'Debian', 'Suse') %}
 
 chrome-package-install-pkg-installed-directurl-linux:
   pkg.installed:
     - sources:
-      - {{ chrome.pkg.name }}: {{ chrome.pkg.directurl.source }}
+      - google-chrome-stable: {{ chrome.pkg.directurl.source }}
+    - skip_verify: true
     - reload_modules: true
+    - onlyif: {{ chrome.pkg.use_upstream_package_directurl }}
 
     {%- elif grains.kernel|lower == 'linux' %}
 

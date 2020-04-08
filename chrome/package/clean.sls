@@ -17,7 +17,9 @@ chrome-package-clean-cmd-run-cask:
 
 chrome-package-clean-pkg-cleand:
   pkg.cleand:
-    - name: {{ chrome.pkg.name }}
+    - names:
+      - {{ chrome.pkg.name }}
+      - google-chrome-stable
     - reload_modules: true
   cmd.run:
     - name: snap remove {{ chrome.pkg.name }}

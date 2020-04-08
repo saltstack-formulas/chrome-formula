@@ -12,9 +12,8 @@ control 'chrome package' do
     when 'debian'
       'google-chrome-stable'
     when 'linux'
-      'chrome'
+      'chromium'
     end
-  end
 
   describe package(package_name) do
     it { should be_installed }
