@@ -15,8 +15,8 @@ chrome-package-clean-cmd-run-cask:
 
     {%- elif grains.kernel|lower == 'linux' %}
 
-chrome-package-clean-pkg-cleand:
-  pkg.cleand:
+chrome-package-clean-pkg:
+  pkg.removed:
     - names:
       - {{ chrome.pkg.name }}
       - google-chrome-stable
@@ -25,6 +25,6 @@ chrome-package-clean-pkg-cleand:
     - name: snap remove {{ chrome.pkg.name }}
     - onlyif: test -x /usr/bin/snap || test -x /usr/local/bin/snap
     - onfail:
-      - pkg: chrome-package-clean-pkg-cleand
+      - pkg: chrome-package-clean-pkg
 
     {%- endif %}
